@@ -78,7 +78,9 @@ class userServices {
   // follow a user
 
   async follow(filter) {
-    return user.findByIdAndUpdate(filter);
+   const paramuser = await user.findById(filter);
+   const reqUser = await await user.findById(filter)
+return paramuser,reqUser;
   }
 }
 

@@ -28,9 +28,8 @@ class postServices {
   }
 
   // like a post
-  async likedislike(id){
-    return await Posts.findById(id)
-
+  async likedislike(filter) {
+    return await Posts.findOne(filter);
   }
 }
 module.exports = new postServices();

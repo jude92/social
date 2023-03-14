@@ -95,6 +95,7 @@ class postControllers {
   async likeOrDislike(req, res) {
     try {
       const user = await postservices.likedislike({ _id: req.params.id });
+      console.log(user);
       if (!user.likes.includes(req.body.userId)) {
         await user.updateOne({ $push: { likes: req.body.userId } });
         res.status(200).json("post liked successfully");
@@ -103,6 +104,7 @@ class postControllers {
         res.status(200).json("you disliked this post");
       }
     } catch (error) {
+      console.log("it here", error);
       res.status(403).json(error);
     }
   }

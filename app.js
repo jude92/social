@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const http = require("http");
 const express = require("express");
 const dotenv = require("dotenv");
-const router = require("./routes/index");
-const postrouter = require("./routes/postIndex")
+const userRouter = require("./src/routes/userindex");
+const postrouter = require("./src/routes/postIndex");
 
 dotenv.config();
 
@@ -11,8 +11,8 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(express.json());
-app.use("/api/v1", router);
-app.use("/api/v1",postrouter)
+app.use("/api/v1", userRouter);
+app.use("/api/v1", postrouter);
 
 const port = 1010;
 

@@ -39,6 +39,7 @@ class userControllers {
         data: theuser,
       });
     } catch (error) {
+      console.log(error);
       res.status(401).json(error);
     }
   }
@@ -76,20 +77,24 @@ class userControllers {
   // get a user
   async getUser(req, res) {
     // let existingUser;
+    try {
+      const existingUser = await userServices.getUser({ _id: req.params.id });
+      if (!existingUser) {
+        res.status(403).json({
+          message: "user does not exist",
+          success: false,
+        });
+      }
 
-    const existingUser = await userServices.getUser({ _id: req.params.id });
-    if (!existingUser) {
-      res.status(403).json({
-        message: "user does not exist",
-        success: false,
+      res.status(200).json({
+        message: "success ingetting the user",
+        success: true,
+        data: existingUser,
       });
+    } catch (error) {
+      console.log("my error is here", error);
+      res.status(401).json(error);
     }
-
-    res.status(200).json({
-      message: "success ingetting the user",
-      success: true,
-      data: existingUser,
-    });
   }
 
   // get all users
@@ -103,6 +108,14 @@ class userControllers {
   }
 
   // follow user
-  async follow(req, res) {}
+  async follow(req, res) {
+    if (req.body.userId !== req.params.id) {
+      try {
+        await userServices;
+      } catch (error) {}
+    } else {
+      res.status(401).json("you can not follow urself");
+    }
+  }
 }
 module.exports = new userControllers();
