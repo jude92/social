@@ -1,10 +1,12 @@
 {
-  "name": "post-It",
+  "name": "post-it",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start:dev": "node app.js",
+    "install": "npm i",
+    "start": "npm run install && node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,7 +17,9 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.1",
+    "mongoose": "^7.0.1"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.21"
   }
 }
