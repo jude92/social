@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/api/v1", userRouter);
 app.use("/api/v1", postrouter);
 
-const port = 1010;
+const port = process.env.PORT || 1010;
 
 mongoose
   .connect(process.env.MONGO_URI)
